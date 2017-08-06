@@ -3,6 +3,7 @@
 $pagination = $('.pagination');
 $studentList = $('.student-list li');
 
+
 //Show the page number
 const showPage=(page)=> {
   // first hide all students on the page
@@ -23,7 +24,6 @@ const appendPageLinks= ()=>{
   }
   $pagination.find('ul li:first a').addClass('active');
 };
-
 // append our new page link section to the site
 const loadLink = (link) => {
   // remove the old page link section from the site
@@ -37,3 +37,8 @@ const loadLink = (link) => {
 //initialize pagination
 showPage(1);
 appendPageLinks();
+
+// add loadLink function to each link
+$('.pagination a ').on('click', (event) => {
+  loadLink($(event.target));
+});
