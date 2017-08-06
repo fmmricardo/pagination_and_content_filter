@@ -19,7 +19,7 @@ const appendPageLinks= ()=>{
   // “for” every page
   for (let i = 1; i <= totalPages; i++) {
     // add a page link to the page link section
-    $pagination.children('ul').append('<li><a href=\"#\">' + i + '</a></li>');
+    $pagination.children('ul').append('<li><a href="#">' + i + '</a></li>');
   }
   $pagination.find('ul li:first a').addClass('active');
 };

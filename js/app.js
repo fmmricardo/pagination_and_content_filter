@@ -51,9 +51,9 @@ function appendPageLinks(studentsList){
         let pageNumber = event.target.textContent;
         showPage(pageNumber,studentsArray);
 
-    })
+    });
 
-  };  // remove the old page link section from the site
+  }  // remove the old page link section from the site
   // append our new page link section to the site
 
 
