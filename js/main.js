@@ -1,7 +1,14 @@
 //Variables
+//Pagination
+ $pagination = $('.pagination');
+ $studentList = $('.student-list li');
 
-$pagination = $('.pagination');
-$studentList = $('.student-list li');
+//searchbar
+ $studentSearch=$('.student-search');
+ $studentEmail =$('.email');
+ $studentName =$('h3');
+
+// $searchButton= $('.searchButton');
 
 
 //Show the page number
@@ -21,6 +28,7 @@ const appendPageLinks= ()=>{
   for (let i = 1; i <= totalPages; i++) {
     // add a page link to the page link section
     $pagination.children('ul').append('<li><a href="#">' + i + '</a></li>');
+
   }
   $pagination.find('ul li:first a').addClass('active');
 };
@@ -42,3 +50,21 @@ appendPageLinks();
 $('.pagination a ').on('click', (event) => {
   loadLink($(event.target));
 });
+
+//student search HTML to add dynamically
+$('.student-search').append('  <input id="searchInputBox"placeholder="Search for students..."><button id="searchButton">Search</button>');
+
+function searchList() {
+    // Obtain the value of the search input
+    // remove the previous page link section
+    // Loop over the student list, and for each student…
+// ...obtain the student’s name…
+// ...and the student’s email…
+// ...if the search value is found inside either email or name…
+    		// ...add this student to list of “matched” student
+    // If there’s no “matched” students…
+           // ...display a “no student’s found” message
+    // If over ten students were found…
+           // ...call appendPageLinks with the matched students
+   // Call showPage to show first ten students of matched list
+}
