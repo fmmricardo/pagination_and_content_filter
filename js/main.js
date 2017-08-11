@@ -4,9 +4,10 @@
  $studentList = $('.student-list li');
 
 //searchbar
- $studentSearch=$('.student-search');
- $studentEmail =$('.email');
- $studentName =$('h3');
+
+ let pageHeader = $('.page-header');
+ let studentEmail =$('.email');
+ let studentName =$('h3');
 
 // $searchButton= $('.searchButton');
 
@@ -47,24 +48,49 @@ showPage(1);
 appendPageLinks();
 
 // add loadLink function to each link
-$('.pagination a ').on('click', (event) => {
+$('.pagination a').on('click', (event) => {
   loadLink($(event.target));
 });
 
 //student search HTML to add dynamically
-$('.student-search').append('  <input id="searchInputBox"placeholder="Search for students..."><button id="searchButton">Search</button>');
+$(pageHeader).append('<input id="searchInputBox"placeholder="Search for students..."><button id="searchButton">Search</button>');
 
 function searchList() {
+    //create an array to assinge the founded values (email,name )
+    let foundedResults = [];
     // Obtain the value of the search input
+    let searchInput = $('#input').val().toLowerCase();
     // remove the previous page link section
+    let searechInput = "";
     // Loop over the student list, and for each student…
-// ...obtain the student’s name…
-// ...and the student’s email…
+    for(let i=0; i<studentList.length; i++){
+      // ...obtain the student’s name…
+      // ...and the student’s email…
+      if(name[i].textContent.search(searechInput)!= -1 || emails[i].textContent.search(serachInput)!= -1){
+        // push the founded fields to the array
+        foundedResults.push(studentList[i]);
+      }
+    }
+
 // ...if the search value is found inside either email or name…
-    		// ...add this student to list of “matched” student
+if (foundedResults=== 0){
+  //remove the previous search
+  searechInput.remove();
+  //append message "no serchresult"
+
+  // ...add this student to list of “matched” student
+}else{
+  //remove the previoua search
+  //hide setudentsList
+  //show(page,foundedResults)
+  //pagination
+
+
+}
+//create a EventListner for the button
+//create a EventListner for the Enter key
+
     // If there’s no “matched” students…
            // ...display a “no student’s found” message
     // If over ten students were found…
-           // ...call appendPageLinks with the matched students
-   // Call showPage to show first ten students of matched list
-}
+           //
