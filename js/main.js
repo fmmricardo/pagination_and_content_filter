@@ -53,42 +53,74 @@ $('.pagination a').on('click', (event) => {
 });
 
 //student search HTML to add dynamically
-$(pageHeader).append('<input id="searchInputBox"placeholder="Search for students..."><button id="searchButton">Search</button>');
+$(pageHeader).append('<input id="inputBoxText" placeholder="Search for students..."><button id="searchButton">Search</button>');
 
 function searchList() {
     //create an array to assinge the founded values (email,name )
     let foundedResults = [];
     // Obtain the value of the search input
-    let searchInput = $('#input').val().toLowerCase();
-    // remove the previous page link section
-    let searechInput = "";
+    let searchInputBox = $('#inputBoxText').val()//.toLowerCase();
+    // clear the links
+
+
     // Loop over the student list, and for each student…
-    for(let i=0; i<studentList.length; i++){
+    for(let i=0; i<$studentList.length; i++){
       // ...obtain the student’s name…
       // ...and the student’s email…
-      if(name[i].textContent.search(searechInput)!= -1 || emails[i].textContent.search(serachInput)!= -1){
+      if(name[i].textContent.search(searchInputBox)!= -1 || emails[i].textContent.search(searchInputBox)!= -1){
         // push the founded fields to the array
         foundedResults.push(studentList[i]);
       }
-    }
+}
 
 // ...if the search value is found inside either email or name…
-if (foundedResults=== 0){
-  //remove the previous search
-  searechInput.remove();
-  //append message "no serchresult"
-
+if (foundedResults.length=== 0){
+  //hide studentList
+  $studentList.hide();
+  //remove the previous faile search
+  $('.noResult').remove();
+  // add a div with the message "No result found"
+  $('.page').append('<div class="noResult">No result Found!</div>');
   // ...add this student to list of “matched” student
-}else{
+}else if (foundedResults.length < 10) {
   //remove the previoua search
+  $('.noResult').remove();
   //hide setudentsList
+  $studentList.hide();
   //show(page,foundedResults)
+  showPage(1);
   //pagination
-
-
+}else{
+    //remove the previous faile search
+    $('.noResult').remove();
+    //hide studentList
+    $studentList.hide();
+    //show results
+    showPage(1);
+    //add pagionation Link
+    appendPageLinks();
+  }
+//clear the input field
+document.getElementById('searchInputBox').value = '';
 }
+//
+
 //create a EventListner for the button
+
+$('#searchButton').on('click',()=>{
+searchList();
+});
+
+
 //create a EventListner for the Enter key
+
+$('#searchButton').on('keyup',()=>{
+  if (13 == e.keyCode) {
+     searchList();
+  }
+});
+
+
 
     // If there’s no “matched” students…
            // ...display a “no student’s found” message
