@@ -14,17 +14,17 @@
 $('.page').append('<div class="pagination"></div>');
 
 //Show the page number
-const showPage= (pageNumber, listName) =>{
+const showPage= (pageNumber, currentList) =>{
     // first hide all students on the page
     studentList.hide();
-    let currentListLength = listName.length;
+    let currentListLength = currentList.length;
     // Then loop through all students in our student list argument
     for (let i = 0; i < currentListLength; i++) {
    if (i < pageNumber * 10 && i + 1 > (pageNumber - 1) * 10) {
-     $(listName[i]).show();
+     $(currentList[i]).show();
    }
  }
- currentList= listName;
+ currentList= studentList;
 };
 
 const appendPageLinks= ()=>{
@@ -34,12 +34,12 @@ const appendPageLinks= ()=>{
   // create a page link section
   pagination.append('<ul><ul>');
   // “for” every page
-  for (let i = 1; i <= totalPages; i++) {
+  for(let i = 1; i <= totalPages; i++) {
     // add a page link to the page link section
     pagination.children('ul').append('<li><a href="#">' + i + '</a></li>');
   }
   pagination.find('ul li:first a').addClass('active');
-};
+
 // append our new page link section to the site
 const loadLink = (link) => {
   // remove the old page link section from the site
@@ -47,16 +47,16 @@ const loadLink = (link) => {
   // add a page link to the page link section
   link.addClass('active');
   //call the function showPage and pass the link.text
-  showPage(link.text());
-};
-showPage(1, studentList);
+  showPage(link.text(),currentList);
+  };
+
 // add loadLink function to each link
 $('.pagination a').on('click', (event) => {
   loadLink($(event.target));
-});
-
+  });
+};
 //initialize pagination
-
+showPage(1, studentList);
 appendPageLinks();
 
 
