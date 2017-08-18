@@ -62,7 +62,7 @@ appendPageLinks();
 
 
 //student search HTML to add dynamically
-$(pageHeader).append('<input id="inputBoxText" placeholder="Search for students..."><button id="searchButton">Search</button>');
+$(pageHeader).append('<div class="student-search"><input id="inputBoxText" placeholder="Search for students..."><button id="searchButton">Search/Reset</button></div>');
 
 function searchList() {
     //create an array to assinge the founded values (email,name )
@@ -126,4 +126,3 @@ $('#inputBoxText').on('keyup',(event)=>{
      searchList();
   }
 });
-appendPageLinks();
